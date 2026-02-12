@@ -238,7 +238,7 @@ Edit the `model.primary` field in `config-patch.json`.
 
 | Task Type | Recommended Model Tier | Example Models |
 |-----------|----------------------|----------------|
-| Complex coding/analysis | High-performance | Claude Opus, GPT-5.2 |
+| Complex coding/analysis | High-performance | Claude Opus, GPT-5.2, Kimi K2.5 |
 | Documentation/planning | Mid-tier | Gemini Pro, Claude Sonnet |
 | Information gathering/Q&A | Lightweight | GLM-4, DeepSeek |
 
