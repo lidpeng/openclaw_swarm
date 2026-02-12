@@ -15,14 +15,14 @@
 > Break down complex tasks for a team of specialized agents working in parallel
 
 <p align="center">
-  **Upgrade your OpenClaw from "solo fight 🦞" to "team battle 🦞🦞🦞"!**
+  <strong>Upgrade your OpenClaw from "solo fight 🦞" to "team battle 🦞🦞🦞"!</strong>
 </p>
 
 <p align="center">
   <strong>Work from Li Auto Inc.</strong>
 </p>
 <p align="center">
-  ```The first agent swarm implemented based on Openclaw```
+   <strong>The first agent swarm implemented based on Openclaw <strong>
 </p>
 <p align="center">
   <a href="README.md">🇨🇳 Chinese</a> | <a href="README_EN.md">🇺🇸 English</a>
