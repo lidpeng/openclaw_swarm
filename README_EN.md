@@ -10,7 +10,7 @@
 
 ---
 
-# 🤖 Agent Swarm - Multi-Agent Orchestration
+# 🤖 OpenClaw Swarm
 
 > Break down complex tasks for a team of specialized agents working in parallel
 
