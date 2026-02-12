@@ -10,7 +10,7 @@
 
 ---
 
-# 🤖 OpenClaw Swarm
+<h1 align="center">🐝 OpenClaw Swarm</h1>
 
 <p align="center">
   <strong>Upgrade your OpenClaw from "solo fight 🦞" to "team battle 🦞🦞🦞"!</strong>
