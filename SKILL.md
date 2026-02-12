@@ -11,67 +11,132 @@ triggers:
 
 # Agent Swarm - 多智能体集群编排
 
-## 概述
-
-此技能使你成为**智能体团队的指挥官**，能够根据任务复杂度智能调度多个专业智能体协同完成工作。
-
-核心流程：分析任务 → 拆解子任务 → 选择合适的 Agent → 并行/串行执行 → 整合结果
-
 ---
 
-## ⚠️ 必读：初始化状态检查
+## 🚨 强制入口 - 必须先执行！
 
-**每次触发此技能时，必须先检查初始化状态！**
-
-### Step 0: 检查是否已初始化
+**无论用户请求什么任务，使用智能体集群前必须先执行入口脚本：**
 
 ```bash
-# 检查配置状态
-python3 scripts/config_checker.py check
+python3 scripts/swarm_entry.py
 ```
 
-或者检查配置文件是否存在：
-```bash
-# 检查 .swarm-config.json 是否存在且 initialized=true
-cat .swarm-config.json 2>/dev/null | grep '"initialized": true'
+### 根据返回的 status 决定下一步
+
+脚本返回 JSON，根据 `status` 字段行动：
+
+| status | 含义 | 下一步操作 |
+|--------|------|-----------|
+| `need_config` | 未初始化 | 向用户展示 `display` 和 `prompt` 内容，等待用户选择 A/B/C |
+| `ready` | 已就绪 | 直接进入任务编排，使用 `agents` 列表中的智能体 |
+
+### 示例流程
+
+```python
+# Step 1: 执行入口脚本
+result = exec("python3 scripts/swarm_entry.py")
+
+# Step 2: 解析返回的 JSON
+if result.status == "need_config":
+    # 向用户展示配置选项
+    print(result.display)  # 已检测到的模型
+    print(result.prompt)   # 请选择 A/B/C
+    # 等待用户回复...
+    
+elif result.status == "ready":
+    # 直接开始任务编排
+    agents = result.agents
+    # 继续执行用户的任务...
 ```
 
-**判断逻辑：**
-- ✅ 如果已初始化（`initialized: true`）→ 直接进入任务编排模式
-- ❌ 如果未初始化 → 执行下方的配置向导流程
+### 用户选择后完成初始化
 
-### 初始化命令
+用户选择配置方式后，执行初始化：
 
-用户可以通过以下命令触发配置向导：
-- `/swarm init` 或 `初始化 agent swarm`
-- `配置智能体团队`
-- `swarm 配置`
-
-### 配置完成后标记
-
-配置完成后，运行以下命令标记为已初始化：
 ```bash
-python3 scripts/config_checker.py init --agents pm researcher coder writer designer analyst reviewer assistant automator
+# 用户选择 A（自动分配）后
+python3 scripts/swarm_entry.py --action init
 ```
 
 ### 重置配置
 
-如需重新配置，运行：
 ```bash
-python3 scripts/config_checker.py reset
+python3 scripts/swarm_entry.py --action reset
 ```
 
 ---
 
-## ⚡ 首次使用：配置向导
+## 概述
 
-**重要**：首次调用 Agent Swarm 技能时（未初始化状态），执行以下配置流程！
+此技能使你成为**智能体团队的指挥官**，能够根据任务复杂度智能调度多个专业智能体协同完成工作。
 
-### 自动检测流程
+核心流程：**入口检查** → 分析任务 → 拆解子任务 → 选择合适的 Agent → 并行/串行执行 → 整合结果
 
-当用户首次请求使用智能体集群时，执行以下步骤：
+---
 
-#### Step 1: 检测当前已配置的模型
+## ⚡ 配置向导详解
+
+当入口脚本返回 `status: "need_config"` 时，执行以下配置流程：
+
+### Step 1: 展示检测结果
+
+脚本已自动检测模型，直接展示 `result.display` 内容给用户：
+
+```markdown
+## 📦 您的 OpenClaw 已配置以下模型
+
+### 🔴 高性能模型 (适合: coder, writer, analyst, reviewer)
+- Claude Opus 4.5 (`vendor-claude-opus-4-5/aws-claude-opus-4-5`)
+
+### 🟡 中等模型 (适合: pm, designer)  
+- Gemini 3 Pro (`vendor-gemini-3-pro/gemini-3-pro-preview`)
+
+### 🟢 轻量模型 (适合: researcher, assistant)
+- GLM-4.7 (`lixiang-glm-4-7/Kivy-GLM-4.7`)
+```
+
+### Step 2: 展示配置选项
+
+展示 `result.prompt` 内容：
+
+```markdown
+请选择配置方式：
+
+**A. 自动分配** — 根据您现有的模型自动配置智能体团队
+**B. 添加新模型** — 我会推荐主流模型供您选择
+**C. 自定义配置** — 您手动指定每个智能体的模型
+
+请回复 A/B/C
+```
+
+### Step 3: 根据用户选择执行
+
+**选择 A（自动分配）：**
+```bash
+python3 scripts/swarm_entry.py --action init
+```
+
+**选择 B（添加新模型）：**
+- 展示主流模型选项和配置指南
+- 用户提供配置后，更新 OpenClaw 配置
+- 然后执行 init
+
+**选择 C（自定义配置）：**
+- 让用户指定每个智能体的模型
+- 收集完成后执行 init
+
+### Step 4: 确认初始化完成
+
+初始化成功后，告知用户：
+```
+✅ Agent Swarm 配置完成！现在可以开始使用智能体团队了。
+```
+
+---
+
+## 旧版配置方式（兼容）
+
+如需手动检测模型，也可以使用 gateway 工具：
 
 ```python
 # 使用 gateway 工具获取当前配置
