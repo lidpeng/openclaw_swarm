@@ -84,30 +84,104 @@ Agent Swarm Orchestration:
 └── 🔎 reviewer (quality review)
 ```
 
-## 📖 Usage Examples
+## 📖 Use Cases
 
-### Technical Research Report
+### Case 1: 🔬 Technical Research Report
 
+> "Research reinforcement learning technology and write an analysis report. Search from Arxiv, GitHub, and internal docs, then generate a complete document with a roadmap."
+
+**Execution Flow:**
 ```
-Research xxx technology and write an in-depth analysis report
-```
-
-### Code Project Refactoring
-
-```
-Help me refactor the authentication module of this project
-```
-
-### Data Analysis Report
-
-```
-Analyze this sales data and generate a monthly report
+├── 🔍 researcher × 3 (parallel)
+│   ├── Search Arxiv papers
+│   ├── Search GitHub projects
+│   └── Search internal documents
+├── ✍️ writer (serial)
+│   └── Compile materials, write report
+└── 🎨 designer (serial)
+    └── Generate technology roadmap
 ```
 
-### Automation Tasks
+**Efficiency Analysis:**
+- ⏱️ Serial: ~12min → Parallel: ~5min (58% saved)
+- 💰 Cost saving: 93% (GLM search + Gemini writing vs all Claude)
 
+---
+
+### Case 2: 📊 Market Research & Web Visualization
+
+> "Research silver price trends from objective data, bullish views, and bearish views, then create an interactive webpage."
+
+**Execution Flow:**
 ```
-Set up automatic GitHub trending check every morning
+├── 🔍 researcher × 3 (parallel)
+│   ├── Objective data research
+│   ├── Bullish views collection
+│   └── Bearish views collection
+├── ✍️ writer (serial)
+│   └── Write in-depth analysis
+├── 🔎 reviewer (serial)
+│   └── Review content accuracy
+└── 👨‍💻 coder (serial)
+    └── Develop interactive webpage
+```
+
+---
+
+### Case 3: 🐙 GitHub Project Research
+
+> "Research mainstream AI Agent frameworks (LangChain, AutoGPT, CrewAI) and compare their pros and cons."
+
+**Execution Flow:**
+```
+├── 🔍 researcher × 3 (parallel)
+│   ├── LangChain research
+│   ├── AutoGPT research
+│   └── CrewAI research
+├── ✍️ writer (serial)
+│   └── Write comparison article
+└── 🎨 designer (serial)
+    └── Generate comparison chart
+```
+
+---
+
+### Case 4: 📚 Batch Data Processing
+
+> "Process these 50 emails, extract key information and generate a summary report."
+
+**Execution Flow:**
+```
+├── 📊 analyst × N (parallel)
+│   └── Batch parse email content
+├── ✍️ writer (serial)
+│   └── Generate summary report
+```
+
+---
+
+### Case 5: 🐱 Image Generation
+
+> "Draw a cute cat!"
+
+**Execution Flow:**
+```
+└── 🎨 designer
+    └── Generate cat using image model
+```
+
+---
+
+### Case 6: 🎬 Animation Storyboard
+
+> "Generate animation storyboards from the script."
+
+**Execution Flow:**
+```
+├── ✍️ writer
+│   └── Parse script, split scenes
+└── 🎨 designer × N (serial)
+    └── Generate storyboard frames
 ```
 
 ## 🛠️ Script Tools
