@@ -14,7 +14,20 @@
 
 > Break down complex tasks for a team of specialized agents working in parallel
 
-The first agent swarm implemented based on Openclaw
+<p align="center">
+  **Upgrade your OpenClaw from "solo fight 🦞" to "team battle 🦞🦞🦞"!**
+</p>
+
+<p align="center">
+  <strong>Work from Li Auto Inc.</strong>
+</p>
+<p align="center">
+  ```The first agent swarm implemented based on Openclaw```
+</p>
+<p align="center">
+  <a href="README.md">🇨🇳 Chinese</a> | <a href="README_EN.md">🇺🇸 English</a>
+</p>
+
 ## ✨ Features
 
 - 🎯 **10+ Specialized Agents** - PM, Researcher, Coder, Writer, Designer, Analyst, and more
