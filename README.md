@@ -24,7 +24,7 @@ OpenClaw 在处理简单和自动化任务上非常有效，但在处理复杂�
 |------|------|
 | ⏱️ **任务耗时极长** | 默认线性串行执行，处理超长任务时耗时极长 |
 | 📄 **鲁棒性较差** | 长任务链条中单一任务报错可能导致整体失败，中间过程不透明 |
-| 🔥💰 **非常烧钱** | 默认使用 Opus 4.5 模型，一天复杂任务可能烧掉几百元 |
+| 🔥💰 **非常烧钱** | 如果默认使用 Opus 4.5 模型，一天复杂任务可能烧掉几百元 |
 
 **OpenClaw Swarm 解决方案：**
 
@@ -59,30 +59,9 @@ OpenClaw 在处理简单和自动化任务上非常有效，但在处理复杂�
 
 > 💡 目前实现的是静态多智能体集群，后续我们也会尝试动态生成团队的配置
 
-## 🚀 快速开始
+## 🚀 快速开始-安装说明
 
-### 方式一：Skill 形式安装（⭐ 推荐）
-
-直接将以下指令发送给您的 bot 或在 openclaw 后台输入：
-
-```bash
-npx skills add https://gitlab.chehejia.com/ai-market/lixiang-skills-marketplace/-/tree/master/packages/agent-swarm
-```
-
-> ⚠️ **注意**: 目前该技能主要适配在公司数智云内部部署的 OpenClaw，外部环境可能会出现报错。
->
-> 🛒 **技能集市地址**: [ai-market.chehejia.com](https://ai-market.chehejia.com)
-
-### 方式二：文档配置（不推荐）
-
-让你的 OpenClaw 读取配置文档进行 swarm 集群配置：
-- 📄 [OpenClaw Swarm 多智能体系统配置教程](https://li.feishu.cn/wiki/SVw0wIj5viweM9kqd70c2SlDnAg)
-
-> 通过文档配置得到的 swarm 集群设定不稳定，且不方便更新版本，但教程有助于了解 Swarm 的设计理念。
-
-### 方式三：文件安装
-
-如果 skill 下载失败，可以直接将 `agent-swarm.skill` 文件发送给你的机器人。
+将本仓库的url交给openclaw，让它自行安装。
 
 ### 安装后验证
 
@@ -96,8 +75,6 @@ openclaw agents list
 # 3. 重启网关
 openclaw gateway restart
 ```
-
-> 📞 安装遇到问题请联系 @李大鹏，OpenClaw 本身问题请联系数智云团队
 
 ## 📚 使用案例
 
@@ -186,23 +163,23 @@ openclaw gateway restart
 根据需求和 OpenClaw 对话来新增定制化的子智能体，或通过调用 skill 修改智能体配置。
 
 示例对话：
-> "冒险小理，帮我在 agent swarm 中增加一个子智能体，专门用来检测每天最新的 github 热门项目"
+> "帮我在 agent swarm 中增加一个子智能体，专门用来检测每天最新的 github 热门项目"
 
 ### 🖼️ 图像生成模型配置
 
-申请 Gemini API 后（[申请地址](https://li.chj.cloud/apihub/abilitysquare)），在 `openclaw.json` 中配置：
+申请 Gemini API 后，在 `openclaw.json` 中配置：
 
 ```json
 {
   "vendor-gemini-3-pro-image": {
-    "baseUrl": "https://llm-gateway-proxy.inner.chj.cloud/llm-gateway/v1beta",
+    "baseUrl": "baseUrl",
     "apiKey": "Your API Key",
     "api": "google-generative-ai",
     "authHeader": "x-goog-api-key",
     "models": [
       {
         "id": "gemini-3-pro-image-preview",
-        "name": "CHJ Gemini 3 Pro Image",
+        "name": "Gemini 3 Pro Image",
         "reasoning": false,
         "input": ["text", "image"],
         "cost": { "input": 0, "output": 0 },
@@ -228,11 +205,6 @@ openclaw gateway restart
 
 使用 OpenClaw 具有高度可定制性，可以根据自己的需求进行低成本且高定制化的二次开发，欢迎大家在我们的 skill 上进行优化和提供 feature。
 
-## 🔮 开发中 Feature
-
-- 📺 **前端可视化**：任务进展、子智能体描述、任务拆解都可在网页直观查看和修改
-- 👤 **人在回路机制**：每次使用后可提供专家建议，子智能体记录经验，避免重复错误
-- 🤖 **动态团队生成**：根据任务自动生成最优团队配置
 
 ## 📁 目录结构
 
@@ -248,23 +220,9 @@ agent-swarm/
     └── setup-guide.md    # 详细部署指南
 ```
 
-## 👥 团队 & 联系
-
-**技术团队：**
-- @李大鹏（负责人）
-- @韩纪飞
-- @曾令铭
-- @张升涛
-
-**鸣谢：** 感谢数智云团队提供的 OpenClaw 技术支持
-
-## 📢 加入社区
-
-欢迎加入话题群交流使用心得，或加入内测群提供改进建议和分享使用案例！
-
 ## ⚠️ 声明
 
-目前关于 OpenClaw Swarm 的配置和优化我们还在探索中，使用中该能力可能存在不稳定性，后续会不断优化和升级，并分享相关使用经验。欢迎有相关需求或成功探索了使用案例的同事进行交流！
+目前关于 OpenClaw Swarm 的配置和优化我们还在探索中，使用中该能力可能存在不稳定性，后续会不断优化和升级，并分享相关使用经验。欢迎有相关需求或成功探索了使用案例进行交流！
 
 ## 📄 许可证
 
@@ -273,7 +231,5 @@ MIT License
 ---
 
 <p align="center">
-  Made with ❤️ for <a href="https://github.com/anthropics/claude-code">OpenClaw</a>
+  Made with ❤️ for OpenClaw</a>
 </p>
-
-📚 **项目文档**: [飞书文档](https://li.feishu.cn/wiki/SVw0wIj5viweM9kqd70c2SlDnAg)

@@ -42,11 +42,9 @@
 
 ### 1. Install the Skill
 
-```bash
-# Clone to OpenClaw skills directory
-cd ~/.openclaw/skills
-git clone https://gitlab.chehejia.com/lidapeng3/openclaw-swarm.git agent-swarm
-```
+
+Give the URL of this repository to OpenClaw and let it install automatically.
+
 
 ### 2. Run Setup Wizard
 

@@ -153,16 +153,16 @@ gateway({ action: "config.get" })
 ## 📦 您的 OpenClaw 已配置以下模型
 
 ### 🔴 高性能模型 (适合: coder, writer, analyst, reviewer)
-- Claude Opus 4.5 (vendor-claude-opus-4-5/aws-claude-opus-4-5)
+- Claude Opus 4.5 (claude-opus-4-5/claude-opus-4-5)
 
 ### 🟡 中等模型 (适合: pm, designer)
 - Gemini 3 Pro (vendor-gemini-3-pro/gemini-3-pro-preview)
 
 ### 🟢 轻量模型 (适合: researcher, assistant)
-- GLM-4.7 (lixiang-glm-4-7/Kivy-GLM-4.7)
+- GLM-4.7 (glm-4-7/Kivy-GLM-4.7)
 
 ### 🖼️ 图像模型 (适合: designer)
-- Gemini 3 Pro Image (vendor-gemini-3-pro-image/gemini-3-pro-image-preview)
+- Gemini 3 Pro Image (gemini-3-pro-image/gemini-3-pro-image-preview)
 ```
 
 #### Step 3: 询问用户配置方式

@@ -56,7 +56,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "pm",
         "workspace": "/workspace/agents/pm",
-        "model": { "primary": "vendor-gemini-3-pro/gemini-3-pro-preview" },
+        "model": { "primary": "gemini-3-pro/gemini-3-pro-preview" },
         "identity": { "name": "产品经理", "emoji": "📋" },
         "tools": {
           "allow": ["read", "write", "edit", "web_search", "web_fetch", "memory_search", "memory_get"],
@@ -66,7 +66,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "researcher",
         "workspace": "/workspace/agents/researcher",
-        "model": { "primary": "lixiang-glm-4-7/Kivy-GLM-4.7" },
+        "model": { "primary": "glm-4-7/Kivy-GLM-4.7" },
         "identity": { "name": "研究员", "emoji": "🔍" },
         "tools": {
           "allow": ["web_search", "web_fetch", "read", "write", "memory_search", "memory_get"],
@@ -76,7 +76,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "coder",
         "workspace": "/workspace/agents/coder",
-        "model": { "primary": "vendor-claude-opus-4-5/aws-claude-opus-4-5" },
+        "model": { "primary": "claude-opus-4-5/aws-claude-opus-4-5" },
         "identity": { "name": "程序员", "emoji": "👨‍💻" },
         "tools": {
           "allow": ["read", "write", "edit", "exec", "process"],
@@ -86,7 +86,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "writer",
         "workspace": "/workspace/agents/writer",
-        "model": { "primary": "vendor-gemini-3-pro/gemini-3-pro-preview" },
+        "model": { "primary": "gemini-3-pro/gemini-3-pro-preview" },
         "identity": { "name": "写作者", "emoji": "✍️" },
         "tools": {
           "allow": ["read", "write", "edit", "memory_search", "memory_get"],
@@ -96,7 +96,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "designer",
         "workspace": "/workspace/agents/designer",
-        "model": { "primary": "vendor-gemini-3-pro-image/gemini-3-pro-image-preview" },
+        "model": { "primary": "gemini-3-pro-image/gemini-3-pro-image-preview" },
         "identity": { "name": "设计师", "emoji": "🎨" },
         "tools": {
           "allow": ["read", "write"],
@@ -106,7 +106,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "analyst",
         "workspace": "/workspace/agents/analyst",
-        "model": { "primary": "vendor-claude-opus-4-5/aws-claude-opus-4-5" },
+        "model": { "primary": "claude-opus-4-5/aws-claude-opus-4-5" },
         "identity": { "name": "分析师", "emoji": "📊" },
         "tools": {
           "allow": ["read", "write", "edit", "exec"],
@@ -116,7 +116,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "reviewer",
         "workspace": "/workspace/agents/reviewer",
-        "model": { "primary": "vendor-claude-opus-4-5/aws-claude-opus-4-5" },
+        "model": { "primary": "claude-opus-4-5/aws-claude-opus-4-5" },
         "identity": { "name": "审核员", "emoji": "🔎" },
         "tools": {
           "allow": ["read", "memory_search", "memory_get"],
@@ -126,7 +126,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "assistant",
         "workspace": "/workspace/agents/assistant",
-        "model": { "primary": "lixiang-glm-4-7/Kivy-GLM-4.7" },
+        "model": { "primary": "glm-4-7/Kivy-GLM-4.7" },
         "identity": { "name": "助手", "emoji": "💬" },
         "tools": {
           "allow": ["message", "read", "sessions_send"],
@@ -136,7 +136,7 @@ mkdir -p /workspace/agents/{pm,researcher,coder,writer,designer,analyst,reviewer
       {
         "id": "automator",
         "workspace": "/workspace/agents/automator",
-        "model": { "primary": "vendor-claude-opus-4-5/aws-claude-opus-4-5" },
+        "model": { "primary": "claude-opus-4-5/aws-claude-opus-4-5" },
         "identity": { "name": "自动化", "emoji": "🤖" },
         "tools": {
           "allow": ["exec", "process", "cron", "browser", "read", "write"],
@@ -200,7 +200,7 @@ openclaw gateway restart
     }
   },
   "modelAliases": {
-    "gemini-image": "vendor-gemini-3-pro-image/gemini-3-pro-image-preview"
+    "gemini-image": "gemini-3-pro-image/gemini-3-pro-image-preview"
   }
 }
 ```
