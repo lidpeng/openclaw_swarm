@@ -12,8 +12,6 @@
 
 # 🤖 OpenClaw Swarm
 
-> Break down complex tasks for a team of specialized agents working in parallel
-
 <p align="center">
   <strong>Upgrade your OpenClaw from "solo fight 🦞" to "team battle 🦞🦞🦞"!</strong>
 </p>
