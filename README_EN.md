@@ -14,6 +14,7 @@
 
 > Break down complex tasks for a team of specialized agents working in parallel
 
+The first agent swarm implemented based on Openclaw
 ## ✨ Features
 
 - 🎯 **10+ Specialized Agents** - PM, Researcher, Coder, Writer, Designer, Analyst, and more
