@@ -14,6 +14,9 @@
   <strong>Work from Li Auto Inc.</strong>
 </p>
 <p align="center">
+  <strong>首个基于Openclaw实现的Agent swarm</strong>
+</p>
+<p align="center">
   <a href="README.md">🇨🇳 中文</a> | <a href="README_EN.md">🇺🇸 English</a>
 </p>
 
@@ -225,7 +228,10 @@ agent-swarm/
 
 ## ⚠️ 声明
 
-目前关于 OpenClaw Swarm 的配置和优化还处于beta阶段，使用中该能力可能存在不稳定性，后续会不断优化和升级，并分享相关使用经验。欢迎有相关需求或成功探索了使用案例进行交流！
+目前关于 OpenClaw Swarm 的配置和优化还处于beta阶段，使用中该能力可能存在不稳定性，后续会不断优化和升级，并分享相关使用经验。欢迎共同开发&交流！
+ToDO: 
+- 动态智能体团队配置生成
+- 智能体团队配置&任务进度可视化
 
 ## 📄 许可证
 
