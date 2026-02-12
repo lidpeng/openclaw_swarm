@@ -1,0 +1,13 @@
+# 临时文件
+*.pyc
+__pycache__/
+*.swp
+*.swo
+.DS_Store
+
+# 配置补丁（每个环境不同）
+config-patch.json
+
+# IDE
+.idea/
+.vscode/
