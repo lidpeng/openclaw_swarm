@@ -137,7 +137,7 @@ openclaw gateway restart
 
 ### Case 5: 🐱 图像生成
 
-> "画一只可爱的猫猫！"
+> "帮我画四只不同风格的猫猫！"
 
 配置 Gemini 图像模型后支持图片生成。
 
