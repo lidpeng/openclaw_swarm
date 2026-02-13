@@ -291,9 +291,9 @@ python3 scripts/setup_wizard.py
 | 模型 | Input ($/M) | Output ($/M) | 用于 |
 |------|-------------|--------------|------|
 | Claude Opus 4.5 | $5.00 | $25.00 | main, coder, writer, analyst, reviewer, automator |
-| Gemini 3 Pro | $1.25 | $10.00 | pm |
+| Gemini 3 Pro | $1.25 | $10.00 | pm, researcher |
 | Gemini 3 Pro Image | $1.25 | $10.00 | designer |
-| GLM-4.7 | ~$0.014 | ~$0.014 | researcher, assistant, github-tracker |
+| GLM-4.7 | ~$0.014 | ~$0.014 | assistant, github-tracker |
 
 **成本优化原则**：简单任务用便宜模型，复杂任务才用贵模型。
 
@@ -462,6 +462,159 @@ sessions_spawn({ task: "审核报告质量...", agentId: "reviewer" })
 4. **失败处理** — 某个子任务失败时，决定重试还是跳过
 5. **结果整合** — 最终输出要连贯，不是简单拼接
 6. **成本意识** — 优先用便宜模型，复杂任务才用贵模型
+
+---
+
+## 🔧 超长文本分批输出策略
+
+当需要生成较长的文件（如完整报告、长文档）时，**单次输出可能因模型 token 限制被截断**，导致 `write` 工具调用失败。
+
+### 问题表现
+
+```
+Validation failed for tool "write":
+  - content: must have required property 'content'
+```
+
+或者输出被截断（`stopReason: "length"`），导致文件内容不完整。
+
+### 解决方案：分段生成 + 脚本汇总
+
+**策略一：分章节派发多个 writer（推荐）**
+
+将长报告拆分为多个章节，分别派发给不同的 writer 并行撰写，最后用脚本拼接：
+
+```javascript
+// Phase 1: 并行撰写各章节
+sessions_spawn({ task: "撰写第1章：摘要和背景...", agentId: "writer", label: "ch01" })
+sessions_spawn({ task: "撰写第2章：核心内容...", agentId: "writer", label: "ch02" })
+sessions_spawn({ task: "撰写第3章：结论...", agentId: "writer", label: "ch03" })
+
+// Phase 2: 所有章节完成后，用 exec 拼接
+exec(`
+  cat sections/ch01.md > FINAL-REPORT.md
+  cat sections/ch02.md >> FINAL-REPORT.md
+  cat sections/ch03.md >> FINAL-REPORT.md
+`)
+```
+
+**策略二：exec + heredoc 追加写入**
+
+对于单个智能体任务，如果内容太长导致单次 write 失败，可以分段写入：
+
+```bash
+# 先写入文件头部
+cat > output.md << 'PART1'
+# 标题
+## 第一部分内容...
+PART1
+
+# 追加后续内容
+cat >> output.md << 'PART2'
+## 第二部分内容...
+PART2
+
+# 继续追加
+cat >> output.md << 'PART3'
+## 第三部分内容...
+PART3
+```
+
+### 最佳实践
+
+| 报告长度 | 推荐策略 |
+|---------|---------|
+| < 3000 字 | 单个 writer 直接输出 |
+| 3000-8000 字 | 分 2-4 个章节并行撰写，脚本汇总 |
+| > 8000 字 | 分 5+ 个章节，多 writer 并行 + 脚本汇总 |
+
+**核心原则**：不限制单次输出长度，而是通过**拆分任务**和**并行执行**来解决长文本问题。
+
+---
+
+## 🆘 子智能体遇错上报机制
+
+子智能体在执行任务时可能遇到各种错误（工具调用失败、模型限制、资源不足等）。为提高任务成功率，建立**遇错上报机制**。
+
+### 机制说明
+
+当子智能体任务失败或返回异常时，主智能体应：
+
+1. **分析错误类型**：
+   - 输出截断（`stopReason: "length"`）→ 采用分段策略
+   - 工具调用失败（`Validation failed`）→ 检查参数或换方案
+   - 模型不支持（如 Gemini Image 不支持 thinking）→ 调整配置
+   - 超时（`timeout`）→ 拆分任务或增加时间
+
+2. **选择解决方案**：
+   - **增派子智能体并行分担**：将大任务拆成小块，派发多个子智能体
+   - **主智能体直接处理**：简单任务直接由主智能体完成
+   - **调整参数重试**：修改 task 描述、超时时间、模型配置后重试
+
+### 错误处理流程
+
+```
+子智能体任务失败
+    ↓
+主智能体收到失败通知
+    ↓
+分析错误原因
+    ├── 输出过长 → 拆分为多个子任务，增派 writer 并行
+    ├── 工具不可用 → 换用 exec 或其他方案
+    ├── 模型限制 → 调整 thinking/model 配置
+    └── 超时 → 拆分任务或延长 timeout
+    ↓
+执行解决方案
+    ↓
+汇总结果
+```
+
+### 示例：writer 输出被截断的处理
+
+```javascript
+// 原始任务失败（输出太长被截断）
+// 主智能体收到通知后，改用分段策略
+
+// 解决方案：拆分为 3 个子任务
+sessions_spawn({
+  task: "撰写报告第1-2章（摘要、背景），限制 1500 字...",
+  agentId: "writer",
+  label: "report-part1"
+})
+
+sessions_spawn({
+  task: "撰写报告第3-4章（核心内容），限制 1500 字...",
+  agentId: "writer",
+  label: "report-part2"
+})
+
+sessions_spawn({
+  task: "撰写报告第5-6章（结论、参考文献），限制 1000 字...",
+  agentId: "writer",
+  label: "report-part3"
+})
+
+// 全部完成后用 exec 合并
+```
+
+### 在子智能体 AGENTS.md 中添加上报指引
+
+建议在每个子智能体的 AGENTS.md 中添加：
+
+```markdown
+## 遇到问题时
+
+如果遇到以下情况，在输出中明确说明，以便主智能体处理：
+
+1. **任务太大**：说明"任务内容过多，建议拆分为 X 个子任务"
+2. **工具不可用**：说明"工具 X 调用失败，原因是 Y"
+3. **信息不足**：说明"缺少 X 信息，无法完成任务"
+4. **超出能力范围**：说明"此任务需要 X 能力，建议交给 Y 智能体"
+
+不要静默失败，明确上报问题有助于主智能体找到解决方案。
+```
+
+---
 
 ## 调用语法
 

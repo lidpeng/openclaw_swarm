@@ -206,17 +206,23 @@ Agent Swarm Orchestration:
 ## 📁 Directory Structure
 
 ```
-agent-swarm/
-├── SKILL.md              # Main skill documentation (must read)
-├── README.md             # Project description (this file)
-├── scripts/
-│   ├── setup_wizard.py   # Setup wizard
-│   ├── agent_manager.py  # Agent management
-│   ├── init_agents.py    # Initialization script
-│   └── experience_logger.py
-└── references/
-    ├── setup-guide.md    # Detailed deployment guide
-    └── statistics-template.md
+openclaw-swarm/
+├── README.md              # Project description (Chinese)
+├── README_EN.md           # Project description (this file)
+├── openclaw-swarm/
+│   ├── SKILL.md           # Main skill documentation (must read)
+│   ├── scripts/
+│   │   ├── setup_wizard.py      # Setup wizard
+│   │   ├── agent_manager.py     # Agent management
+│   │   ├── init_agents.py       # Initialization script
+│   │   ├── config_checker.py    # Configuration checker
+│   │   ├── experience_logger.py # Experience logger
+│   │   ├── swarm_entry.py       # Entry point
+│   │   └── agent_souls.json     # Agent configuration
+│   └── references/
+│       ├── setup-guide.md       # Detailed deployment guide
+│       ├── statistics-template.md # Statistics template
+│       └── souls/               # Agent personality files
 ```
 
 ## 🔧 Custom Configuration
