@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="case_display/silver_case_visualization/openclaw-swarm-cn.png" alt="OpenClaw Swarm 宣传图" width="100%"/>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/OpenClaw-Swarm-blue?style=for-the-badge" alt="OpenClaw Swarm"/>
   <img src="https://img.shields.io/badge/version-1.0.0-green?style=for-the-badge" alt="Version"/>
   <img src="https://img.shields.io/badge/license-MIT-orange?style=for-the-badge" alt="License"/>
