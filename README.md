@@ -22,6 +22,43 @@
 
 ---
 
+## 🎬 在线案例展示
+
+<p align="center">
+  <strong>查看 OpenClaw Swarm 的实际效果</strong>
+</p>
+
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <h3>🔬 强化学习技术调研</h3>
+      <p>多智能体并行调研，生成完整技术分析报告和发展路线图</p>
+      <p>
+        <a href="https://lidpeng.github.io/rl_case_visualization/" target="_blank">
+          <img src="https://img.shields.io/badge/🚀_在线演示-强化学习案例-brightgreen?style=for-the-badge" alt="RL Case Demo"/>
+        </a>
+      </p>
+      <p><em>涉及智能体: 🔍 researcher × 3, ✍️ writer × n, 🎨 designer</em></p>
+    </td>
+    <td align="center" width="50%">
+      <h3>📊 白银价格市场分析</h3>
+      <p>多角度市场调研，生成深度分析文章和交互式可视化网页</p>
+      <p>
+        <a href="https://lidpeng.github.io/silver_case_visualization/" target="_blank">
+          <img src="https://img.shields.io/badge/🚀_在线演示-白银价格案例-blue?style=for-the-badge" alt="Silver Case Demo"/>
+        </a>
+      </p>
+      <p><em>涉及智能体: 🔍 researcher × 3, ✍️ writer, 🔎 reviewer, 👨‍💻 coder</em></p>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <em>💡 这两个案例展示了 OpenClaw Swarm 如何通过多智能体并行协作，高效完成复杂任务</em>
+</p>
+
+---
+
 ## 📖 项目简介
 
 OpenClaw 在处理简单和自动化任务上非常有效，但在处理复杂任务时存在几个痛点：
@@ -100,6 +137,8 @@ openclaw gateway restart
     └── 生成技术发展路线图
 ```
 
+**🎬 [查看在线演示 →](https://lidpeng.github.io/rl_case_visualization/)**
+
 ---
 
 ### Case 2: 📊 市场调研 & 网页可视化
@@ -116,6 +155,8 @@ openclaw gateway restart
 └── 👨‍💻 coder (串行)
     └── 开发交互式网页
 ```
+
+**🎬 [查看在线演示 →](https://lidpeng.github.io/silver_case_visualization/)**
 
 ---
 
@@ -199,6 +240,15 @@ openclaw gateway restart
 
 配置完成后测试：`帮我生成一张小猫的图片`
 
+## 🛠️ 脚本工具
+
+| 脚本 | 功能 |
+|------|------|
+| `setup_wizard.py` | 配置向导，检测模型并生成配置 |
+| `agent_manager.py` | 智能体管理（增删改查） |
+| `init_agents.py` | 初始化智能体工作目录 |
+| `experience_logger.py` | 智能体经验记录管理 |
+
 ## 🆚 竞品对比
 
 | 特性 | OpenClaw Swarm | Kimi K2.5 Swarm | Claude Code Swarm |
@@ -235,10 +285,10 @@ openclaw-swarm/
 ```
 
 ## ⚠️ 声明
-感谢Kimi团队，Openclaw Swarm的部分设计思路和案例受到了Kimi K2 Swarm的启发.
+Openclaw Swarm的部分设计思路和案例受到了Kimi K2.5 内测功能Swarm和Claude Code 实验性功能Agent Teams的启发.
 目前关于 OpenClaw Swarm 的配置和优化还处于beta阶段，使用中该能力可能存在不稳定性，后续会不断优化和升级，并分享相关使用经验。欢迎共同开发&交流！
 
-## ToDO: 
+## ToDO:
 - 动态智能体团队配置生成
 - 多智能体团队配置&任务进度可视化
 
