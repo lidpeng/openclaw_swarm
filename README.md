@@ -35,17 +35,17 @@
       <p>多智能体并行调研，生成完整技术分析报告和发展路线图</p>
       <p>
         <a href="https://lidpeng.github.io/rl_case_visualization/" target="_blank">
-          <img src="https://img.shields.io/badge/🚀_在线演示-强化学习案例-brightgreen?style=for-the-badge" alt="RL Case Demo"/>
+          <img src="https://img.shields.io/badge/🚀_demo展示-强化学习案例-brightgreen?style=for-the-badge" alt="RL Case Demo"/>
         </a>
       </p>
-      <p><em>涉及智能体: 🔍 researcher × 3, ✍️ writer × n, 🎨 designer</em></p>
+      <p><em>涉及智能体: 🔍 researcher × 4, ✍️ writer × 5, 🎨 designer</em></p>
     </td>
     <td align="center" width="50%">
       <h3>📊 白银价格市场分析</h3>
       <p>多角度市场调研，生成深度分析文章和交互式可视化网页</p>
       <p>
         <a href="https://lidpeng.github.io/silver_case_visualization/" target="_blank">
-          <img src="https://img.shields.io/badge/🚀_在线演示-白银价格案例-blue?style=for-the-badge" alt="Silver Case Demo"/>
+          <img src="https://img.shields.io/badge/🚀_demo展示-白银价格案例-blue?style=for-the-badge" alt="Silver Case Demo"/>
         </a>
       </p>
       <p><em>涉及智能体: 🔍 researcher × 3, ✍️ writer, 🔎 reviewer, 👨‍💻 coder</em></p>
