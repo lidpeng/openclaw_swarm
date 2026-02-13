@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="case_display/silver_case_visualization/openclaw-swarm-en.png" alt="OpenClaw Swarm Promotional Image" width="100%"/>
+  <img src="pic/openclaw-swarm-en.png" alt="OpenClaw Swarm Promotional Image" width="100%"/>
 </p>
 
 <p align="center">
