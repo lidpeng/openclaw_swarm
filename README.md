@@ -14,7 +14,7 @@
   <strong>Work from Li Auto Inc.</strong>
 </p>
 <p align="center">
-  <strong>首个基于Openclaw实现的Agent swarm</strong>
+  <strong>基于Openclaw实现的Agent swarm</strong>
 </p>
 <p align="center">
   <a href="README.md">🇨🇳 中文</a> | <a href="README_EN.md">🇺🇸 English</a>
