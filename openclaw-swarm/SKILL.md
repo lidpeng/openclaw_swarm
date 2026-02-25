@@ -631,15 +631,26 @@ sessions_spawn({
 
 ### ⚠️ 特殊说明：Designer 智能体
 
-**重要**：调用 designer 智能体时，必须显式设置 `thinking: "off"`，因为 Gemini Image 模型不支持 thinking 模式：
+**重要**：designer 智能体使用专门的图片生成脚本，而不是直接调用模型。
 
+**工作流程：**
+1. Designer 智能体收到任务后，会调用 `scripts/gemini_image_gen.py` 脚本
+2. 脚本直接与 Gemini API 通信，生成图片
+3. 图片保存到指定路径（默认 `/workspace/images/`）
+4. Designer 返回图片路径
+
+**调用示例：**
 ```javascript
 sessions_spawn({
-  task: "为文章生成配图...",
-  agentId: "designer",
-  thinking: "off"    // 必须！Gemini Image 不支持 thinking
+  task: "使用 gemini_image_gen.py 脚本生成图片：提示词为 '一只可爱的猫咪'，保存到 /workspace/images/cat.png",
+  agentId: "designer"
 })
 ```
+
+**QPS 限制：**
+- 同时调用多个 designer 任务时，建议最多 2 个并行
+- 超过 4 个并行会触发 429 限流错误
+- 大量图片生成任务建议串行执行
 
 ### Task 描述最佳实践
 
